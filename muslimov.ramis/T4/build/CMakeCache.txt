@@ -23,7 +23,8 @@ CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//No help, variable specified on the command line.
+//Choose the type of build, options are: None Debug Release RelWithDebInfo
+// MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //No help, variable specified on the command line.
@@ -195,7 +196,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=labT4
+CMAKE_PROJECT_NAME:STATIC=shapes_tests
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=1.12.1
@@ -373,6 +374,24 @@ labT4_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 labT4_SOURCE_DIR:STATIC=/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4
+
+//Value Computed by CMake
+shapes_BINARY_DIR:STATIC=/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build
+
+//Value Computed by CMake
+shapes_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+shapes_SOURCE_DIR:STATIC=/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4
+
+//Value Computed by CMake
+shapes_tests_BINARY_DIR:STATIC=/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build
+
+//Value Computed by CMake
+shapes_tests_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+shapes_tests_SOURCE_DIR:STATIC=/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4
 
 
 ########################

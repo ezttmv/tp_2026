@@ -12,6 +12,8 @@ public:
     virtual void move(double dx, double dy) = 0;
     virtual void scale(double factor) = 0;
     virtual std::string getName() const = 0;
+
+    virtual void getBoundingBox(double &left, double &bottom, double &right, double &top) const = 0;
 };
 
 #endif //SHAPE_HPP

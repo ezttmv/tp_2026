@@ -19,22 +19,13 @@ public:
     Point getLeftBottom() const;
     Point getRightTop() const;
 
+    void getBoundingBox(double &left, double &bottom, double &right, double &top) const override;
+
 private:
     Point leftBottom_;
     Point rightTop_;
     
     static void validateCorners(const Point& lb, const Point& rt);
-};
-
-
-class Shape{
-public:
-    virtual ~Shape() = default;
-    virtual double getArea() const = 0;
-    virtual Point getCenter() const = 0;
-    virtual void move(double dx, double dy) = 0;
-    virtual void scale(double factor) = 0;
-    virtual std::string getName() const = 0;
 };
 
 #endif //RECTANGLE_HPP

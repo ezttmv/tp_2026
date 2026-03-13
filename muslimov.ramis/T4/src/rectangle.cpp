@@ -2,10 +2,10 @@
 #include <stdexcept>
 #include <cmath>
 
-// static bool almostEqual(double a, double b, double eps = 1e-12)
-// {
-//     return std::fabs(a-b) <= eps;
-// }
+namespace{
+    constexpr double EPS = 1e-12;
+}
+
 
 Rectangle::Rectangle(const Point & leftBottom, const Point & rightTop)
     : leftBottom_(leftBottom), rightTop_(rightTop)
@@ -17,10 +17,9 @@ void Rectangle::validateCorners(const Point & lb, const Point & rt){
 
     double width = rt.x - lb.x;
     double height = rt.y - lb.y;
-    const double eps = 1e-12;
 
-    if(width <= eps || height <= eps){
-        throw std::invalid_argument("Rectangle::validateCorners: rightTop must be strictky to the right and above leftBottom");
+    if(width <= EPS || height <= EPS){
+        throw std::invalid_argument("Rectangle::validateCorners: rightTop must be strictly to the right and above leftBottom");
     }
 }
 
@@ -44,7 +43,7 @@ void Rectangle::move(double dx, double dy)
 
 void Rectangle::scale(double factor)
 {
-    if(factor <= 0.0){
+    if(!(factor > 0.0)){
         throw std::invalid_argument("Rectangle::scale: Factor must be > 0");
     }
 
@@ -92,4 +91,11 @@ Point Rectangle::getLeftBottom() const
 Point Rectangle::getRightTop() const 
 {
     return rightTop_;
+}
+
+void Rectangle::getBoundingBox(double &left, double &bottom, double &right, double &top) const {
+    left = leftBottom_.x;
+    bottom = leftBottom_.y;
+    right = rightTop_.x;
+    top = rightTop_.y;
 }

@@ -1,4 +1,5 @@
-/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build/CMakeFiles/tests.dir
+/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build/CMakeFiles/shapes.dir
+/home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build/CMakeFiles/unit_tests.dir
 /home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build/CMakeFiles/test.dir
 /home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build/CMakeFiles/edit_cache.dir
 /home/ramis/Рабочий стол/tech_prog_github/tp_2026/muslimov.ramis/T4/build/CMakeFiles/rebuild_cache.dir
