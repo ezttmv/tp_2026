@@ -8,7 +8,7 @@
 #include "include/shapePrinter.hpp"
 #include "include/compositeShape.hpp"
 
-int main(int argc, char **argv) {
+int main() {
     // ::testing::InitGoogleTest(&argc, argv);
     // int testResult = RUN_ALL_TESTS();
 
