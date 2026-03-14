@@ -46,6 +46,7 @@ int main() {
         }
     } catch (const std::exception &e) {
         std::cerr << "Demo printing failed: " << e.what() << "\n";
+        return 2;
     }
 
     return 0;
