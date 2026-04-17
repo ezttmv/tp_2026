@@ -1,5 +1,5 @@
 #include "circle.hpp"
-#include <stdexcept> 
+#include <stdexcept>
 
 Circle::Circle(const Point& center, double radius) : center_(center), radius_(radius) {}
 

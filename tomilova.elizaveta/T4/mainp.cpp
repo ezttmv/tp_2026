@@ -12,7 +12,7 @@ void printInfo(const Shape& shape){
     }
     else{
         Point center = shape.getCenter();
-        std::cout << "[" << shape.getName() << ", (" << center.x << ", " << center.y << "), " 
+        std::cout << "[" << shape.getName() << ", (" << center.x << ", " << center.y << "), "
         << shape.getArea() << "]" << '\n';
     }
 }
@@ -28,14 +28,14 @@ int main(){
         shapes.push_back(std::make_unique<Rectangle>(Point{-5.0, -5.0}, Point{-2.0, -3.0}));
         shapes.push_back(std::make_unique<Circle>(Point{-10.0, 10.0}, 1.5));
 
-        // составная фигура 
+        // составная фигура
         auto composite = std::make_unique<CompositeShape>();
         composite->addShape(std::make_unique<Rectangle>(Point{1.0, 1.0}, Point{3.0, 3.0}));
         composite->addShape(std::make_unique<Circle>(Point{2.0, 2.0}, 1.0));
-        
+
         shapes.push_back(std::move(composite));
 
-        
+
         std::cout << "--- BEFORE SCALE ---" << std::endl;
         for (size_t i = 0; i < shapes.size(); ++i) {
             printInfo(*shapes[i]);
@@ -46,7 +46,7 @@ int main(){
             shapes[i]->scale(2.0);
         }
 
-        
+
         std::cout << "\n--- AFTER SCALE (x2.0) ---" << std::endl;
         for (size_t i = 0; i < shapes.size(); ++i) {
             printInfo(*shapes[i]);

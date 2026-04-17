@@ -23,7 +23,7 @@ Point CompositeShape::getCenter() const{
         if (c.y < minY) minY = c.y;
         if (c.y > maxY) maxY = c.y;
     }
-    return {(minX + maxX)/2, (minY + maxY)/2}; 
+    return {(minX + maxX)/2, (minY + maxY)/2};
 }
 void CompositeShape::move(double dx, double dy){
     for (size_t i = 0; i < vec_.size(); i++){
@@ -62,7 +62,7 @@ void CompositeShape::print() const {
     std::cout << "[COMPOSITE, (" << c.x << ", " << c.y << "), " << getArea() << ":" << std::endl;
     for (size_t i = 0; i < vec_.size(); ++i) {
         Point fCen = vec_[i]->getCenter();
-        std::cout << " " << vec_[i]->getName() << ", (" << fCen.x << ", " << fCen.y << "), " 
+        std::cout << " " << vec_[i]->getName() << ", (" << fCen.x << ", " << fCen.y << "), "
          << vec_[i]->getArea();
         if (i < vec_.size() - 1) std::cout << ",";
         std::cout << '\n';
