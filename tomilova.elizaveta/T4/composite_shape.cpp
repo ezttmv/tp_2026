@@ -59,10 +59,12 @@ void CompositeShape::addShape(std::unique_ptr<Shape> pShape){
 
 void CompositeShape::print() const {
     Point c = getCenter();
-    std::cout << "[COMPOSITE, (" << c.x << ", " << c.y << "), " << getArea() << ":" << std::endl;
+    std::cout << "[COMPOSITE, (" << c.x << ", " << c.y << 
+    "), " << getArea() << ":" << std::endl;
     for (size_t i = 0; i < vec_.size(); ++i) {
         Point fCen = vec_[i]->getCenter();
-        std::cout << " " << vec_[i]->getName() << ", (" << fCen.x << ", " << fCen.y << "), "
+        std::cout << " " << vec_[i]->getName() 
+        << ", (" << fCen.x << ", " << fCen.y << "), "
          << vec_[i]->getArea();
         if (i < vec_.size() - 1) std::cout << ",";
         std::cout << '\n';

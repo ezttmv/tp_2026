@@ -12,7 +12,8 @@ void printInfo(const Shape& shape){
     }
     else{
         Point center = shape.getCenter();
-        std::cout << "[" << shape.getName() << ", (" << center.x << ", " << center.y << "), "
+        std::cout << "[" << shape.getName() << 
+        ", (" << center.x << ", " << center.y << "), "
         << shape.getArea() << "]" << '\n';
     }
 }
