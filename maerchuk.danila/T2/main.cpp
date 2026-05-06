@@ -1,19 +1,13 @@
-﻿// Пример перегрузки ввода/вывода для пользовательского типа DataStruct.
-// Похожим образом можно организовать ввод/вывод в работе 1 (T2)
-
-#include "data_struct.hpp"
-
+﻿#include "data_struct.hpp"
 #include <iostream>
-#include <string>
-#include <iterator>
 #include <vector>
-#include <limits>
 #include <algorithm>
+#include <iterator>
+#include <limits>
 
 int main()
 {
   using nspace::DataStruct;
-
   std::vector< DataStruct > data;
 
   while (!std::cin.eof())
@@ -25,10 +19,7 @@ int main()
     }
     else
     {
-      if (std::cin.eof())
-      {
-        break;
-      }
+      if (std::cin.eof()) break;
       std::cin.clear();
       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
