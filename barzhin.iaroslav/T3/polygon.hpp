@@ -1,7 +1,6 @@
 #ifndef T3_POLYGON_HPP
 #define T3_POLYGON_HPP
 
-#include <complex>
 #include <utility>
 #include <string>
 #include <vector>

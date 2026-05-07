@@ -9,8 +9,8 @@ constexpr std::size_t K_PRECISION = 1;
 
 namespace Utils {
     void setup_iomanip(std::ostream &os);
-
-    std::vector<Polygon> load_from_file(char* filename);
+    std::vector<Polygon> load_from_file(const char* filename);
+    bool is_unsigned_number(const std::string &value);
 
     double area_even_odd(const std::vector<Polygon>& data, bool odd);
     double area_mean(const std::vector<Polygon>& data);

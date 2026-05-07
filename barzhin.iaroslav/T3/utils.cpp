@@ -11,7 +11,7 @@ void Utils::setup_iomanip(std::ostream &os) {
     os << std::setprecision(K_PRECISION) << std::fixed;
 }
 
-std::vector<Polygon> Utils::load_from_file(char* filename) {
+std::vector<Polygon> Utils::load_from_file(const char* filename) {
     std::ifstream file(filename);
     std::vector<Polygon> result;
 
