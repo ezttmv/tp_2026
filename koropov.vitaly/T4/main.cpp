@@ -23,7 +23,7 @@ int main() {
     Point compCenter = comp.getCenter();
     std::cout << compCenter.x << " "
         << compCenter.y << '\n';
-    comp.scale(2);
+    comp.scale(3);
     std::cout << comp.getArea() << '\n';
     return 0;
 }
