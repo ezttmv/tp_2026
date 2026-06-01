@@ -5,7 +5,9 @@
 
 namespace graph_project {
 
-std::vector<std::string> ShortestPathResult::reconstructPath(const std::string& target) const {
+std::vector<std::string> ShortestPathResult::reconstructPath(
+    const std::string& target) const {
+
     auto dist_it = distances.find(target);
     if (dist_it == distances.end() || dist_it->second == GraphAlgorithms::INF) {
         throw PathNotFoundException("No path exists to target vertex: " + target);
@@ -27,10 +29,13 @@ std::vector<std::string> ShortestPathResult::reconstructPath(const std::string& 
 }
 
 // 1. Алгоритм DIJKSTRA
-ShortestPathResult GraphAlgorithms::dijkstra(const DirectedWeightedGraph& graph,
+ShortestPathResult GraphAlgorithms::dijkstra(
+    const DirectedWeightedGraph& graph,
     const std::string& start_id) {
+
     if (!graph.hasVertex(start_id)) {
-        throw VertexNotFoundException("Start vertex for Dijkstra not found: " + start_id);
+        throw VertexNotFoundException(
+            "Start vertex for Dijkstra not found: " + start_id);
     }
 
     ShortestPathResult result;
@@ -42,21 +47,23 @@ ShortestPathResult GraphAlgorithms::dijkstra(const DirectedWeightedGraph& graph,
     }
     result.distances[start_id] = 0.0;
 
-    // Валидация на наличие отрицательных весов во всем графе перед началом работы
+    // Валидация на наличие отрицательных весов во всем графе
     for (const auto& u : vertices) {
         for (const auto& edge : graph.getNeighbors(u)) {
             if (edge.weight < 0.0) {
                 throw NegativeWeightException(
                     "Dijkstra cannot process negative weights. Found edge to "
-                    + edge.target_id + " with weight " + std::to_string(edge.weight));
+                    + edge.target_id + " with weight "
+                    + std::to_string(edge.weight));
             }
         }
     }
 
     // Очередь пар: <расстояние, vertex_id>
-    std::priority_queue<std::pair<double, std::string>,
-                        std::vector<std::pair<double, std::string>>,
-                        std::greater<std::pair<double, std::string>>> pq;
+    using DistPair = std::pair<double, std::string>;
+    std::priority_queue<DistPair,
+                        std::vector<DistPair>,
+                        std::greater<DistPair>> pq;
 
     pq.push({0.0, start_id});
 
@@ -83,10 +90,13 @@ ShortestPathResult GraphAlgorithms::dijkstra(const DirectedWeightedGraph& graph,
 }
 
 // 2. Алгоритм BELLMAN-FORD
-ShortestPathResult GraphAlgorithms::bellmanFord(const DirectedWeightedGraph& graph,
+ShortestPathResult GraphAlgorithms::bellmanFord(
+    const DirectedWeightedGraph& graph,
     const std::string& start_id) {
+
     if (!graph.hasVertex(start_id)) {
-        throw VertexNotFoundException("Start vertex for Bellman-Ford not found: " + start_id);
+        throw VertexNotFoundException(
+            "Start vertex for Bellman-Ford not found: " + start_id);
     }
 
     ShortestPathResult result;
@@ -127,7 +137,8 @@ ShortestPathResult GraphAlgorithms::bellmanFord(const DirectedWeightedGraph& gra
 
             if (result.distances[u] + weight < result.distances[v]) {
                 throw NegativeCycleException(
-                    "Graph contains a negative weight cycle reachable from " + start_id);
+                    "Graph contains a negative weight cycle reachable from "
+                    + start_id);
             }
         }
     }
@@ -136,14 +147,18 @@ ShortestPathResult GraphAlgorithms::bellmanFord(const DirectedWeightedGraph& gra
 }
 
 // 3. Волновой алгоритм (BFS для невзвешенного поиска)
-std::vector<std::string> GraphAlgorithms::waveAlgorithm(const DirectedWeightedGraph& graph,
-                                              const std::string& start_id,
-                                              const std::string& end_id) {
+std::vector<std::string> GraphAlgorithms::waveAlgorithm(
+    const DirectedWeightedGraph& graph,
+    const std::string& start_id,
+    const std::string& end_id) {
+
     if (!graph.hasVertex(start_id)) {
-        throw VertexNotFoundException("Start vertex for Wave algorithm not found: " + start_id);
+        throw VertexNotFoundException(
+            "Start vertex for Wave algorithm not found: " + start_id);
     }
     if (!graph.hasVertex(end_id)) {
-        throw VertexNotFoundException("Target vertex for Wave algorithm not found: " + end_id);
+        throw VertexNotFoundException(
+            "Target vertex for Wave algorithm not found: " + end_id);
     }
 
     std::map<std::string, std::string> predecessors;
@@ -179,7 +194,8 @@ std::vector<std::string> GraphAlgorithms::waveAlgorithm(const DirectedWeightedGr
     }
 
     if (!target_found) {
-        throw PathNotFoundException("No path exists between " + start_id + " and " + end_id);
+        throw PathNotFoundException(
+            "No path exists between " + start_id + " and " + end_id);
     }
 
     std::vector<std::string> path;
