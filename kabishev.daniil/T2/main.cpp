@@ -1,40 +1,33 @@
-#include "data_struct.hpp"
 #include <iostream>
-#include <string>
-#include <iterator>
 #include <vector>
-#include <limits>
 #include <algorithm>
+#include <iterator>
+#include <limits>
+#include "data_struct.hpp"
 
-int main()
-{
-    using kabishev::DataStruct;
+int main() {
+    std::vector<kabishev::DataStruct> data;
 
-    std::vector< DataStruct > data;
-
-    while (!std::cin.eof())
-    {
-        if (!std::cin)
-        {
+    while (!std::cin.eof()) {
+        if (!std::cin) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
 
         std::copy(
-          std::istream_iterator< DataStruct >(std::cin),
-          std::istream_iterator< DataStruct >(),
-          std::back_inserter(data)
+            std::istream_iterator<kabishev::DataStruct>(std::cin),
+            std::istream_iterator<kabishev::DataStruct>(),
+            std::back_inserter(data)
         );
     }
 
-    std::sort(data.begin(), data.end());
+    std::sort(data.begin(), data.end(), kabishev::compareDataStruct);
 
-    std::cout << "DataStruct:\n";
     std::copy(
-      std::begin(data),
-      std::end(data),
-      std::ostream_iterator< DataStruct >(std::cout, "\n")
+        data.begin(),
+        data.end(),
+        std::ostream_iterator<kabishev::DataStruct>(std::cout, "\n")
     );
 
     return 0;
