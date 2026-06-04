@@ -61,14 +61,14 @@ std::istream &operator>>(std::istream &in, DataStruct &dest)
   DataStruct input;
   bool has_k1 = false, has_k2 = false, has_k3 = false;
 
+  // Читаем ровно 3 поля в произвольном порядке
   for (int i = 0; i < 3; ++i)
   {
-    // Пропускаем возможные пробелы перед словом "key" (например, после двоеточия)
-    ss >> std::ws;
+    ss >> std::ws; // Пропускаем пробелы перед "key"
 
     std::string key_base;
     char ch;
-    // Читаем само слово "key"
+    // Считываем слово "key" посимвольно
     for (int j = 0; j < 3; ++j)
     {
       if (ss.get(ch))
@@ -81,11 +81,11 @@ std::istream &operator>>(std::istream &in, DataStruct &dest)
       return in;
     }
 
-    // Пропускаем пробел внутри имени ключа и читаем цифру (1, 2 или 3)
     char num;
     if (!(ss >> std::ws >> num))
-      return in;
+      return in; // Считываем номер ключа ('1', '2' или '3')
 
+    // В зависимости от считанной цифры парсим соответствующий тип данных
     if (num == '1')
     {
       double re, im;
@@ -94,12 +94,22 @@ std::istream &operator>>(std::istream &in, DataStruct &dest)
         input.key1 = {re, im};
         has_k1 = true;
       }
+      else
+      {
+        in.setstate(std::ios::failbit);
+        return in;
+      }
     }
     else if (num == '2')
     {
       if (ss >> std::ws >> input.key2)
       {
         has_k2 = true;
+      }
+      else
+      {
+        in.setstate(std::ios::failbit);
+        return in;
       }
     }
     else if (num == '3')
@@ -109,15 +119,26 @@ std::istream &operator>>(std::istream &in, DataStruct &dest)
         std::getline(ss, input.key3, '"');
         has_k3 = true;
       }
+      else
+      {
+        in.setstate(std::ios::failbit);
+        return in;
+      }
+    }
+    else
+    {
+      in.setstate(std::ios::failbit);
+      return in;
     }
 
-    // После каждого поля ожидаем двоеточие ':'
+    // После каждого поля (включая последнее) обязательно должно идти двоеточие ':'
     ss >> std::noskipws >> DelimiterIO{':'};
   }
 
-  // Ожидаем закрывающую скобку ')'
+  // В самом конце строки должна остаться только закрывающая скобка ')'
   ss >> DelimiterIO{')'};
 
+  // Проверяем, что поток не упал и ВСЕ ТРИ ключа были успешно инициализированы
   if (ss && has_k1 && has_k2 && has_k3)
   {
     dest = input;
@@ -135,7 +156,6 @@ std::ostream &operator<<(std::ostream &out, const DataStruct &src)
   if (!sentry)
     return out;
 
-  // Выводим строго в формате из задания (без внутренних пробелов в ключах для стандартизации)
   out << "(:key1 #c(" << std::fixed << std::setprecision(1) << src.key1.real() << " " << src.key1.imag() << ")"
       << ":key2 " << std::scientific << std::setprecision(2) << src.key2
       << ":key3 \"" << src.key3 << "\":)";
