@@ -1,8 +1,7 @@
-include <iostream>
+#include <iostream>
+
 int main()
 {
-
-	std::cout << “dvoretskiy.aleksey” << ‘\n’;
-	return 0;
-
+  std::cout << "dvoretskiy.aleksey" << '\n';
+  return 0;
 }
