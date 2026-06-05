@@ -5,6 +5,21 @@
 #include <iterator>
 #include <iomanip>
 #include <cmath>
+#include <sstream>
+
+std::string formatScientific(const double data) {
+  std::ostringstream oss;
+  oss << std::scientific << std::setprecision(1) << std::nouppercase << data;
+  std::string str = oss.str();
+
+  size_t e_pos = str.find('e');
+  if (e_pos != std::string::npos) {
+    if (e_pos + 2 < str.size() && str[e_pos + 2] == '0') {
+      str.erase(e_pos + 2, 1);
+    }
+  }
+  return str;
+}
 
 struct DataStruct {
     double key1;
@@ -33,6 +48,7 @@ std::istream& operator>>(std::istream& in, DataStruct& dest) {
     if (!sentry) return in;
 
     DataStruct temp;
+    // Флаги для проверки, что все 3 ключа были считаны
     bool has_key1 = false;
     bool has_key2 = false;
     bool has_key3 = false;
@@ -84,21 +100,20 @@ std::istream& operator>>(std::istream& in, DataStruct& dest) {
 
 // Перегрузка оператора вывода согласно заданию
 std::ostream& operator<<(std::ostream& out, const DataStruct& src) {
-    std::ostream::sentry sentry(out);
-    if (!sentry) return out;
+  std::ostream::sentry sentry(out);
+  if (!sentry) return out;
 
-    std::ios_base::fmtflags f(out.flags());
-    out << "(:key1 ";
+  // Сохраняем состояние флагов
+  std::ios_base::fmtflags f(out.flags());
 
-    // Вывод DBL SCI: мантисса [1, 10), точность до десятых, нижний регистр
-    out << std::scientific << std::setprecision(1) << std::nouppercase << src.key1;
+  out << "(:key1 " << formatScientific(src.key1);
 
-    // Вывод ULL HEX: 0x, верхний регистр цифр
-    out << ":key2 0x" << std::hex << std::uppercase << src.key2;
+  // Вывод key2 (в HEX и одинарных кавычках, как в твоем фрагменте)
+  out << ":key2 0x" << std::hex << std::uppercase << src.key2;
 
-    // Вывод строки
-    out << ":key3 \"" << src.key3 << "\":)";
+  // Вывод key3
+  out << ":key3 \"" << src.key3 << "\":)";
 
-    out.flags(f);
-    return out;
+  out.flags(f);
+  return out;
 }
