@@ -1,6 +1,7 @@
 #ifndef GEOMETRY_HPP
 #define GEOMETRY_HPP
 
+#include <cstddef>
 #include <vector>
 
 struct Point
@@ -12,7 +13,7 @@ struct Point
 struct Polygon
 {
     std::vector<Point> points;
-    size_t vertexCount() const { return points.size(); }
+    std::size_t vertexCount() const { return points.size(); }
     double area() const;
     bool operator==(const Polygon& other) const;
     bool hasRightAngle() const;

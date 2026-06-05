@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <cstddef>
 #include "geometry.hpp"
 
 std::vector<Polygon> readPolygons(const std::string& filename);

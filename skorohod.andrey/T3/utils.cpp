@@ -8,6 +8,7 @@
 #include <functional>
 #include <iomanip>
 #include <cstdlib>
+#include <cstddef>
 
 std::vector<Polygon> readPolygons(const std::string& filename)
 {
@@ -45,7 +46,7 @@ bool parsePolygon(std::istream& is, Polygon& out)
         }
         poly.points.push_back({x, y});
     }
-    if (poly.points.size() != static_cast<size_t>(vertexCount)) return false;
+    if (poly.points.size() != static_cast<std::size_t>(vertexCount)) return false;
     out = std::move(poly);
     return true;
 }
@@ -153,7 +154,7 @@ void cmdArea(const std::vector<Polygon>& data, std::istream& is, std::ostream& o
         setupIomanip(os);
         os << areaMean(data) << '\n';
     } else if (isUnsignedNumber(param)) {
-        size_t num = std::stoul(param);
+        std::size_t num = std::stoul(param);
         setupIomanip(os);
         os << areaNum(data, num) << '\n';
     } else {
@@ -210,7 +211,7 @@ void cmdCount(const std::vector<Polygon>& data, std::istream& is, std::ostream& 
     } else if (param == "ODD") {
         os << countEvenOdd(data, true) << '\n';
     } else if (isUnsignedNumber(param)) {
-        size_t num = std::stoul(param);
+        std::size_t num = std::stoul(param);
         os << countNum(data, num) << '\n';
     } else {
         os << "<INVALID COMMAND>\n";
@@ -241,7 +242,7 @@ void cmdEcho(std::vector<Polygon>& data, std::istream& is, std::ostream& os)
             }
             return acc;
         });
-    size_t added = newData.size() - data.size();
+    std::size_t added = newData.size() - data.size();
     data = std::move(newData);
     os << added << '\n';
 }
@@ -254,7 +255,7 @@ void cmdRightshapes(const std::vector<Polygon>& data, std::istream& is, std::ost
         os << "<INVALID COMMAND>\n";
         return;
     }
-    size_t count = std::count_if(data.begin(), data.end(),
+    std::size_t count = std::count_if(data.begin(), data.end(),
         [](const Polygon& p) { return p.hasRightAngle(); });
     os << count << '\n';
 }

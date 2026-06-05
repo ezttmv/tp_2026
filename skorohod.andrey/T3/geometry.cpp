@@ -1,5 +1,6 @@
 #include "geometry.hpp"
-#include <math.h>
+#include <cmath>
+#include <cstddef>
 
 bool Point::operator==(const Point& other) const
 {
@@ -10,7 +11,7 @@ double Polygon::area() const
 {
     if (points.size() < 3) return 0.0;
     double sum = 0.0;
-    for (size_t i = 0; i < points.size(); ++i)
+    for (std::size_t i = 0; i < points.size(); ++i)
     {
         const Point& p1 = points[i];
         const Point& p2 = points[(i+1) % points.size()];
@@ -27,9 +28,9 @@ bool Polygon::operator==(const Polygon& other) const
 
 bool Polygon::hasRightAngle() const
 {
-    size_t n = vertexCount();
+    std::size_t n = vertexCount();
     if (n < 3) return false;
-    for (size_t i = 0; i < n; ++i)
+    for (std::size_t i = 0; i < n; ++i)
     {
         const Point& p1 = points[i];
         const Point& p2 = points[(i+1) % n];
