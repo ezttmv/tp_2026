@@ -7,8 +7,8 @@ namespace asik
 {
   struct DataStruct
   {
-    std::pair<long long, unsigned long long> key1;
-    char key2;
+    char key1;
+    std::pair<long long, unsigned long long> key2;
     std::string key3;
     bool operator < (const DataStruct & other) const;
   };

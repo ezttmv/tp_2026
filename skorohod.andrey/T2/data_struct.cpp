@@ -73,15 +73,15 @@ namespace asik
           std::getline(in, key, ' ');
           in >> std::ws;
 
-          if (key == "key1")
+          if (key == "key2")
           {
-              in >> RatLspIO{ input.key1 };
-              hasKey1 = true;
-          }
-          else if (key == "key2")
-          {
-              in >> CharIO{ input.key2 };
+              in >> RatLspIO{ input.key2 };
               hasKey2 = true;
+          }
+          else if (key == "key1")
+          {
+              in >> CharIO{ input.key1 };
+              hasKey1 = true;
           }
           else if (key == "key3")
           {
@@ -112,17 +112,18 @@ namespace asik
 
   bool DataStruct::operator<(const DataStruct& other) const
   {
-      long double val1 = static_cast<long double>(key1.first) / key1.second;
-      long double val2 = static_cast<long double>(other.key1.first) / other.key1.second;
-      if (val1 != val2)
-      {
-          return val1 < val2;
-      }
-      if (key2 != other.key2)
-      {
-          return key2 < other.key2;
-      }
-      return key3.length() < other.key3.length();
+    if (key1 != other.key1)
+    {
+        return key1 < other.key1;
+    }
+    long double val1 = static_cast<long double>(key2.first) / key2.second;
+    long double val2 = static_cast<long double>(other.key2.first) / other.key2.second;
+    if (val1 != val2)
+    {
+        return val1 < val2;
+    }
+
+    return key3.length() < other.key3.length();
   }
 
   std::ostream& operator<<(std::ostream& out, const DataStruct& src)
@@ -133,9 +134,9 @@ namespace asik
       return out;
     }
     iofmtguard fmtguard(out);
-    out << "(:key1 (:N " << src.key1.first << ":D " << src.key1.second << ":)"
-      << ":key2 '" << src.key2 << "'"
-      << ":key3 \"" << src.key3 << "\":)";
+    out << "(:key1 '" << src.key1 << "'"
+        << ":key2 (:N " << src.key2.first << ":D " << src.key2.second << ":)"
+        << ":key3 \"" << src.key3 << "\":)";
     return out;
   }
 }
