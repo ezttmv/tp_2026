@@ -27,5 +27,7 @@ void cmdArea(const std::vector<Polygon>& data, std::istream& is, std::ostream& o
 void cmdMax(const std::vector<Polygon>& data, std::istream& is, std::ostream& os);
 void cmdMin(const std::vector<Polygon>& data, std::istream& is, std::ostream& os);
 void cmdCount(const std::vector<Polygon>& data, std::istream& is, std::ostream& os);
+void cmdEcho(std::vector<Polygon>& data, std::istream& is, std::ostream& os);
+void cmdRightshapes(const std::vector<Polygon>& data, std::istream& is, std::ostream& os);
 
 #endif
