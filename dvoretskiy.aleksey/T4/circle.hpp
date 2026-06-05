@@ -1,12 +1,12 @@
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef CIRCLE_H
+#define CIRCLE_H
 
-#include "shape.h"
+#include "shape.hpp"
 
-class Square final : public Shape
+class Circle final : public Shape
 {
 public:
-  Square(const Point & leftBottom, double side);
+  Circle(const Point & center, double radius);
 
   double getArea() const override;
   Point getCenter() const override;
@@ -15,8 +15,8 @@ public:
   const char * getName() const override;
 
 private:
-  Point leftBottom_;
-  double side_;
+  Point center_;
+  double radius_;
 };
 
 #endif

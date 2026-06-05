@@ -1,7 +1,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "point.h"
+#include "point.hpp"
 
 class Shape
 {

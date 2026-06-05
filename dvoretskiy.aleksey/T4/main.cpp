@@ -3,9 +3,9 @@
 #include <memory>
 #include <vector>
 
-#include "circle.h"
-#include "shape.h"
-#include "square.h"
+#include "circle.hpp"
+#include "shape.hpp"
+#include "square.hpp"
 
 namespace
 {
