@@ -118,9 +118,9 @@ namespace asik
     }
     long double val1 = static_cast<long double>(key2.first) / key2.second;
     long double val2 = static_cast<long double>(other.key2.first) / other.key2.second;
-    if (val1 != val2)
+    if (key2 != other.key2)
     {
-        return val1 < val2;
+        return key2 < other.key2;
     }
 
     return key3.length() < other.key3.length();
